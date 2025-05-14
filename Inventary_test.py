@@ -1,4 +1,4 @@
-def menu():#In this function, the main menu is executed and the option of the action to be performed is saved.
+def menu():#En esta función se ejecuta el menú principal y se guarda la opción de la acción a realizar.
     option = input("---------Inventario---------\n1 Añadir producto\n2 Consultar producto\n3 Actualiza producto \n4 Eliminar producto \n5 Total Inventario\n6 Salir\n---------------------------\n : ")    
     if option.isdigit():
         return int(option)
@@ -6,14 +6,14 @@ def menu():#In this function, the main menu is executed and the option of the ac
         print("Ingrese un numero del menu valido")
         return menu()
     
-def add_product(inventary,name,price,amount): #This function receives the inventory, the name of the product, its price and its units, and checks if it is already in the inventory and if not, adds it.
+def add_product(inventary,name,price,amount): #Esta función recibe el inventario, el nombre del producto, su precio y sus unidades, y verifica si ya está en el inventario y si no, lo agrega.
     if name in inventary :
         print("El produto ya se encuentra en el inventario!")
     else :
         inventary[name] = (price,amount)
         print("Producto añadido exitosamente!")
 
-def check_int(massage,case) :#This function is responsible for checking that what the user entered is actually an integer in order to cast it and add it to the product value.
+def check_int(massage,case) :#Esta función se encarga de verificar que lo ingresado por el usuario sea realmente un número entero para poder convertirlo y agregarlo al valor del producto.
     entry = check_str(massage,case)
     if entry.isdigit():
         return int(entry)
@@ -21,7 +21,7 @@ def check_int(massage,case) :#This function is responsible for checking that wha
         print("Dato ingresado invalido!")
         return check_int(massage,case)
 
-def check_float(massage,case) :#This function receives a message that will be what will be asked to the user and a case, to automate what is asked to the user and before casting it is checked that an empty value has not been entered.
+def check_float(massage,case) :#Esta función recibe un mensaje que será lo que se le preguntará al usuario y un caso, para automatizar lo que se le pregunta al usuario y antes de realizar el cast se revisa que no se haya ingresado un valor vacío.
     entry = check_str(massage,case)
     entry1 = entry.replace(",","") 
     entry12 = entry1.replace(".","") 
@@ -38,7 +38,7 @@ def check_float(massage,case) :#This function receives a message that will be wh
         return check_float(massage,case) 
     
 
-def check_str(massage,case):#This function checks that the entered value is not empty.
+def check_str(massage,case):#Esta función verifica que el valor ingresado no esté vacío.
 
 
     entry = input(massage).strip()
@@ -48,7 +48,7 @@ def check_str(massage,case):#This function checks that the entered value is not 
     else :
         return entry
 
-def check_choose(choose) : #This function is responsible for returning a boolean value, true if entered and false if entered
+def check_choose(choose) : #Esta función es responsable de devolver un valor booleano, verdadero si se ingresa y falso si se ingresa
     if choose == "Y" or choose == "y" or choose == "n" or choose == "N" :
             if choose == "Y" or choose == "y":
                 return True
@@ -60,7 +60,7 @@ def check_choose(choose) : #This function is responsible for returning a boolean
     
     
 
-def check_choose_int(choose1): #This function is used to validate what number of repetitions will be done at the beginning
+def check_choose_int(choose1): #Esta función se utiliza para validar qué número de repeticiones se realizarán al inicio.
     choose1 = check_int("¿Cuantos productos iniciales quiere ingresar? : ","")
     if choose1<5 :
         print("¡Deben ser almenos 5!")
@@ -69,7 +69,7 @@ def check_choose_int(choose1): #This function is used to validate what number of
                     
                     
 
-def inicial():#This function is responsible for ordering the 5 initial products
+def inicial():#Esta función es responsable de ordenar los 5 productos iniciales.
     choose = check_str("¿Quiere ingresar datos iniciales al programa?: Y/N ","")
     
     choose1 = check_choose(choose)
@@ -88,7 +88,7 @@ def inicial():#This function is responsible for ordering the 5 initial products
     else :
         return 
         
-def consult_product(inventary,name):#This function receives the inventory and the name to search for, if it is in the inventory it searches for all the matches and saves them in a list and then prints it.
+def consult_product(inventary,name):#Esta función recibe el inventario y el nombre a buscar, si esta en el inventario busca todas las coincidencias y las guarda en una lista para luego imprimirla.
     found = []
     # values = inventary.get(name)
     if name in inventary :
@@ -100,7 +100,7 @@ def consult_product(inventary,name):#This function receives the inventory and th
     else :
         print("Producto no encontrado.")
   
-def update_price(inventary,name,new_price,new_amount=0):#In this function you are asked if you want to change the available units to make it much more dynamic.
+def update_price(inventary,name,new_price,new_amount=0):#En esta función se te pregunta si quieres cambiar las unidades disponibles para hacerla mucho más dinámica.
     if name in inventary:
         if new_amount == 0 :
             amount = inventary[name][1]
@@ -116,7 +116,7 @@ def update_price(inventary,name,new_price,new_amount=0):#In this function you ar
     else :
         print("El producto no se encuentra en el inventario")   
 
-def delete_product(inventary):#In this function we first print the products with 0 units available, so that the user can later enter the one they want to delete.
+def delete_product(inventary):#En esta función primero imprimimos los productos con 0 unidades disponibles, para que posteriormente el usuario pueda introducir el que desea eliminar.
     noamount = []
     print("Esta es la lista de los productos sin unidades\n-------------------------")
     
@@ -133,7 +133,7 @@ def delete_product(inventary):#In this function we first print the products with
     del inventary[delete]
     print("El producto fue eliminado con exito")
 
-def total_inventary(inventary):#Here we multiply the quantity of each key by the price and then with an accumulator we add everything up.
+def total_inventary(inventary):#Aquí multiplicamos la cantidad de cada clave por el precio y luego con un acumulador sumamos todo.
     sum=0
     for key in inventary:
         sum=sum+(inventary[key][0])*(inventary[key][1])
